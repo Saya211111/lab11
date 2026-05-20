@@ -1,0 +1,10 @@
+device,interface,description,ip_address,subnet_mask,enabled
+R1,GigabitEthernet1,MANAGEMENT,10.10.10.11,255.255.255.0,true
+R1,GigabitEthernet2,SALES,192.168.10.1,255.255.255.0,true
+R1,GigabitEthernet3,ENGINEERING,192.168.20.1,255.255.255.0,true
+R2,GigabitEthernet1,MANAGEMENT,10.10.10.12,255.255.255.0,true
+R2,GigabitEthernet2,SALES,192.168.10.2,255.255.255.0,true
+R2,GigabitEthernet3,ENGINEERING,192.168.20.2,255.255.255.0,false
+R3,GigabitEthernet1,MANAGEMENT,10.10.10.13,255.255.255.0,true
+R3,GigabitEthernet2,SALES,192.168.10.3,255.255.255.0,true
+R3,GigabitEthernet3,ENGINEERING,192.168.20.3,255.255.255.0,true

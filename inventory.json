@@ -1,0 +1,16 @@
+{
+  "devices": {
+    "R1": {
+      "platform": "simulated-iosxe",
+      "config_file": "simulated_devices/R1.json"
+    },
+    "R2": {
+      "platform": "simulated-iosxe",
+      "config_file": "simulated_devices/R2.json"
+    },
+    "R3": {
+      "platform": "simulated-iosxe",
+      "config_file": "simulated_devices/R3.json"
+    }
+  }
+}

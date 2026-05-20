@@ -1,0 +1,37 @@
+name: Deploy simulated interfaces
+
+on:
+  push:
+    paths:
+      - "interfaces.csv"
+      - "inventory.json"
+      - "deploy_interfaces.py"
+      - "validate_interfaces.py"
+      - ".github/workflows/deploy-interfaces.yml"
+  pull_request:
+    paths:
+      - "interfaces.csv"
+      - "inventory.json"
+      - "deploy_interfaces.py"
+      - "validate_interfaces.py"
+      - ".github/workflows/deploy-interfaces.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy-interfaces:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Deploy interface source of truth to simulated devices
+        run: python deploy_interfaces.py
+
+      - name: Validate simulated device state
+        run: python validate_interfaces.py

@@ -1,0 +1,23 @@
+{
+  "hostname": "R1",
+  "interfaces": {
+    "GigabitEthernet1": {
+      "description": "MANAGEMENT",
+      "enabled": true,
+      "ip_address": "10.10.10.11",
+      "subnet_mask": "255.255.255.0"
+    },
+    "GigabitEthernet2": {
+      "description": "SALES",
+      "enabled": true,
+      "ip_address": "192.168.10.1",
+      "subnet_mask": "255.255.255.0"
+    },
+    "GigabitEthernet3": {
+      "description": "ENGINEERING",
+      "enabled": true,
+      "ip_address": "192.168.20.1",
+      "subnet_mask": "255.255.255.0"
+    }
+  }
+}
