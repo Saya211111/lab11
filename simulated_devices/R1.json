@@ -2,7 +2,7 @@
   "hostname": "R1",
   "interfaces": {
     "GigabitEthernet1": {
-      "description": "Data",
+      "description": "Da",
       "enabled": true,
       "ip_address": "10.10.10.11",
       "subnet_mask": "255.255.255.0"
@@ -14,7 +14,7 @@
       "subnet_mask": "255.255.255.0"
     },
     "GigabitEthernet3": {
-      "description": "ENGINEERING",
+      "description": "maskom",
       "enabled": true,
       "ip_address": "192.168.20.10",
       "subnet_mask": "255.255.255.0"
