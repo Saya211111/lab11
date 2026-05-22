@@ -22,8 +22,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   check-pr:
@@ -52,8 +51,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -65,17 +62,3 @@ jobs:
 
       - name: Validate approved simulated device state
         run: python validate_interfaces.py
-
-      - name: Open PR for updated simulated devices
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Update simulated device state
-          title: Update simulated device state
-          body: |
-            This PR was created automatically after approved interface changes were merged.
-
-            It updates the simulated device JSON files from `interfaces.csv`.
-          branch: bot/update-simulated-device-state
-          delete-branch: true
-          add-paths: simulated_devices
