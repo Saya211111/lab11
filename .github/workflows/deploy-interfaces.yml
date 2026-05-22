@@ -17,6 +17,9 @@ on:
       - ".github/workflows/deploy-interfaces.yml"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   deploy-interfaces:
     runs-on: ubuntu-latest
@@ -24,6 +27,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -35,3 +40,14 @@ jobs:
 
       - name: Validate simulated device state
         run: python validate_interfaces.py
+
+      - name: Commit updated simulated devices
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add simulated_devices
+          if ! git diff --cached --quiet; then
+            git commit -m "Update simulated device state"
+            git push
+          fi
