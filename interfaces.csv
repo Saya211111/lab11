@@ -1,10 +1,10 @@
 device,interface,description,ip_address,subnet_mask,enabled
-R1,GigabitEthernet1,Data,10.10.10.11,255.255.255.0,true
+R1,GigabitEthernet1,Da,10.10.10.11,255.255.255.0,true
 R1,GigabitEthernet2,Jual,192.168.10.10,255.255.255.0,true
 R1,GigabitEthernet3,maskom,192.168.20.10,255.255.255.0,true
-R2,GigabitEthernet1,DAta,10.10.10.12,255.255.255.0,true
+R2,GigabitEthernet1,D,10.10.10.12,255.255.255.0,true
 R2,GigabitEthernet2,Jual,192.168.10.20,255.255.255.0,true
 R2,GigabitEthernet3,Emakom,192.168.20.20,255.255.255.0,false
-R3,GigabitEthernet1,DAta,10.10.10.13,255.255.255.0,true
+R3,GigabitEthernet1,D,10.10.10.13,255.255.255.0,true
 R3,GigabitEthernet2,Jual,192.168.10.30,255.255.255.0,true
 R3,GigabitEthernet3,mascom,192.168.20.30,255.255.255.0,true
