@@ -8,15 +8,15 @@
       "subnet_mask": "255.255.255.0"
     },
     "GigabitEthernet2": {
-      "description": "SALES",
+      "description": "Jual",
       "enabled": true,
-      "ip_address": "192.168.10.3",
+      "ip_address": "192.168.10.30",
       "subnet_mask": "255.255.255.0"
     },
     "GigabitEthernet3": {
       "description": "ENGINEERING",
       "enabled": true,
-      "ip_address": "192.168.20.3",
+      "ip_address": "192.168.20.30",
       "subnet_mask": "255.255.255.0"
     }
   }
