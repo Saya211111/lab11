@@ -2,6 +2,8 @@ name: Deploy simulated interfaces
 
 on:
   push:
+    branches:
+      - main
     paths:
       - "interfaces.csv"
       - "inventory.json"
@@ -9,6 +11,8 @@ on:
       - "validate_interfaces.py"
       - ".github/workflows/deploy-interfaces.yml"
   pull_request:
+    branches:
+      - main
     paths:
       - "interfaces.csv"
       - "inventory.json"
@@ -21,7 +25,27 @@ permissions:
   contents: write
 
 jobs:
-  deploy-interfaces:
+  check-pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout pull request
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build simulated device state for review
+        run: python deploy_interfaces.py
+
+      - name: Validate proposed interface changes
+        run: python validate_interfaces.py
+
+  deploy-after-approval:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
     steps:
@@ -35,14 +59,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Deploy interface source of truth to simulated devices
+      - name: Deploy approved interface source of truth
         run: python deploy_interfaces.py
 
-      - name: Validate simulated device state
+      - name: Validate approved simulated device state
         run: python validate_interfaces.py
 
       - name: Commit updated simulated devices
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
