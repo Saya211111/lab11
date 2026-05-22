@@ -23,6 +23,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   check-pr:
@@ -65,12 +66,16 @@ jobs:
       - name: Validate approved simulated device state
         run: python validate_interfaces.py
 
-      - name: Commit updated simulated devices
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add simulated_devices
-          if ! git diff --cached --quiet; then
-            git commit -m "Update simulated device state"
-            git push
-          fi
+      - name: Open PR for updated simulated devices
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update simulated device state
+          title: Update simulated device state
+          body: |
+            This PR was created automatically after approved interface changes were merged.
+
+            It updates the simulated device JSON files from `interfaces.csv`.
+          branch: bot/update-simulated-device-state
+          delete-branch: true
+          add-paths: simulated_devices
